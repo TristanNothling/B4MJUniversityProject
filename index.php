@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <head>
 
@@ -21,7 +23,7 @@ $servername = "localhost";
 $user = "root";
 $pass = "";
 $dbname = "bid4";
-session_start();
+
 
 // Create connection
 $conn = mysqli_connect($servername, $user, $pass, $dbname);
@@ -30,7 +32,7 @@ $conn = mysqli_connect($servername, $user, $pass, $dbname);
 if ($conn->connect_error) 
 {
     $error = true;
-	$errorMessage = "Oops! Looks like there was a problem connecting to the database.";
+	$errorMessage = "There was a problem connecting to the database.";
 } 
 
 $sql = "USE bid4";
@@ -38,7 +40,7 @@ $sql = "USE bid4";
 if (!mysqli_query($conn, $sql)) 
 {
     $error = true;
-	$errorMessage = "Oops! Looks like the database could not be found!";
+	$errorMessage = "The database can't be found!";
 } 
 
 date_default_timezone_set('Europe/London'); #To correct an error where registered users were given a reg date an hour late.
@@ -47,7 +49,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 <!-- Wrapper -->
 <div id="wrapper">
 
-<?php include 'header.php'; ?>
+<?php include 'header.php'; ?> <!-- For -->
 
 <!-- Banner
 ================================================== -->
@@ -57,8 +59,8 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Have a job that you&apos;ve been putting off?</h2>
-					<h4>Find someone who&apos;ll do it for you.</h4>
+					<h2>Need a little hand with something?</h2>
+					<h4>Let&apos;s help you find someone to do it.</h4>
 
 					<div class="main-search-input">
 
@@ -82,7 +84,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 							</select>
 						</div>
 
-						<button class="button" onclick="window.location.href='listings-half-screen-map-list.html'">Post your job</button>
+						<button class="button" onclick="window.location.href='dashboard-postjob.php'">Post your job</button>
 
 					</div>
 				</div>

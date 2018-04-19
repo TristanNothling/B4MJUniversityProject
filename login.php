@@ -17,10 +17,10 @@
 <body>
 
 <?php
-
+session_start();
 $error = false;
 $errorMessage = "";
-session_start();
+
 if (isset($_SESSION['Id'])){header("Location:dashboard.php");}
 
 if (isset($_POST['login']))
@@ -38,20 +38,22 @@ $conn = mysqli_connect($servername, $user, $pass, $dbname);
 if ($conn->connect_error) 
 {
     $error = true;
-	$errorMessage = "Oops! Looks like there was a problem connecting to the database.";
+	$errorMessage = "There was a problem connecting to the database.";
 } 
 
 $sql = "USE bid4";
 
 if (!mysqli_query($conn, $sql)) {
     $error = true;
-	$errorMessage = "Oops! Looks like the database could not be found!";
+	$errorMessage = "The database could not be found!";
 } 
 
 date_default_timezone_set('Europe/London'); #To correct an error where registered users were given a reg date an hour late.
 
+if (!$error){
+
 $username = $_POST["username"];
-$password = hash('sha512',$_POST["password"]);
+$password = hash('sha512',$_POST["password"]); #sha512 is used, which was deemed to be the one of highest security.
 $result = $conn->query("SELECT * FROM Users WHERE Username='$username' AND Password='$password'");
 
 if ($result->num_rows == 1) 
@@ -67,7 +69,8 @@ header("Location:dashboard.php");
 else 
 {
 $error = true;
-$errorMessage = "Oops! Looks like the username or password you entered was incorrect.";
+$errorMessage = "Sorry, the username or password you entered was incorrect.";
+}
 }
 }
 
@@ -89,7 +92,7 @@ $errorMessage = "Oops! Looks like the username or password you entered was incor
 				
 				<!-- Logo -->
 				<div id="logo">
-					<a href="index.html"><img src="images/logo.png" alt=""></a>
+					<a href="index.php"><img src="images/logo.png" alt=""></a>
 				</div>
 
 				<!-- Mobile Navigation -->
@@ -106,11 +109,8 @@ $errorMessage = "Oops! Looks like the username or password you entered was incor
 				<nav id="navigation" class="style-1">
 					<ul id="responsive">
 
-						<li><a class="current" href="index.php">Home</a>
 
-						</li>
-
-						<li><a href="#">Browse jobs</a>
+						<li><a href="browse-jobs.php">Browse jobs</a>
 
 						</li>
 						
@@ -135,7 +135,7 @@ $errorMessage = "Oops! Looks like the username or password you entered was incor
 			<div class="right-side">
 				<div class="header-widget">
 					<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
-					<a href="dashboard-add-listing.html" class="button border with-icon">Post a job <i class="sl sl-icon-plus"></i></a>
+					</a>
 				</div>
 			</div>
 			<!-- Right Side Content / End -->

@@ -54,19 +54,22 @@ if (isset($_POST['postjob']))
   if (empty($_POST["title"]) or empty($_POST["description"]) or empty($_POST["budget"]))
   {
 		
-		$_SESSION['ErrorMessage'] = "You left a required field blank! It was either the title, description or budget.";
+		$_SESSION['ErrorMessage'] = "You left a required field blank! It was either the title, description or budget. Click back on your browser to try again.";
 		header("Location:refer-error.php");
 		exit();
   }
+
+  #prepared statements are made use of to prevent the use of MySQL injection
 	
-$stmt = $conn->prepare("INSERT INTO Jobs (Title,Description,Location,Postcode,PostDate,Budget,PosterId,CategoryId) VALUES (?,?,?,?,?,?,?,?)");
+$stmt = $conn->prepare("INSERT INTO Jobs (Title,Description,Location,Postcode,PostDate,Budget,PosterId,CategoryId) 
+	VALUES (?,?,?,?,?,?,?,?)");
 $stmt->bind_param("sssssiii",$title,$description,$location,$postcode,$postdate,$budget,$posterid,$categoryID);
 
-$title = $_POST["title"];
-$description = $_POST["description"];
-$location = $_POST["location"];
-$postcode = $_POST["postcode"];
-$budget = $_POST["budget"];
+$title = mysql_real_escape_string($_POST["title"]);
+$description = mysql_real_escape_string($_POST["description"]);
+$location = mysql_real_escape_string($_POST["location"]);
+$postcode = mysql_real_escape_string($_POST["postcode"]);
+$budget = mysql_real_escape_string($_POST["budget"]);
 $postdate = date('Y-m-d H:i:s');
 $posterid = $_SESSION['Id'];
 $categoryID = $_POST["category"];
