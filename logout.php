@@ -18,7 +18,9 @@ session_unset();
 session_destroy();
 
 echo "Logged out.";
-//find a way to post back to index page with post variable logged out = true. 
+
+//perhaps a way to post back to index page with post variable logged_out = true. then display a little message like "See you again soon" if this var is set?
+
 header("Location:index.php");
 ?>
 </p>

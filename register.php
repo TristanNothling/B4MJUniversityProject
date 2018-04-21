@@ -21,6 +21,8 @@ session_start();
 $error = false;
 $errorMessage = "";
 
+if (isset($_SESSION['Id'])){header("Location:dashboard.php");}
+
 if (isset($_POST['register']))
 {
 
@@ -125,7 +127,7 @@ $errorMessage = "Oops! Looks like there was a problem with registration";
 				
 				<!-- Logo -->
 				<div id="logo">
-					<a href="index.html"><img src="images/logo.png" alt=""></a>
+					<a href="index.php"><img src="images/logo.png" alt=""></a>
 				</div>
 
 				<!-- Mobile Navigation -->
@@ -142,9 +144,6 @@ $errorMessage = "Oops! Looks like there was a problem with registration";
 				<nav id="navigation" class="style-1">
 					<ul id="responsive">
 
-						<li><a class="current" href="index.php">Home</a>
-
-						</li>
 
 						<li><a href="browse-jobs.php">Browse jobs</a>
 
@@ -171,7 +170,7 @@ $errorMessage = "Oops! Looks like there was a problem with registration";
 			<div class="right-side">
 				<div class="header-widget">
 					<a href="#sign-in-dialog" class="sign-in popup-with-zoom-anim"><i class="sl sl-icon-login"></i> Sign In</a>
-					<a href="dashboard-add-listing.html" class="button border with-icon">Post a job <i class="sl sl-icon-plus"></i></a>
+					</a>
 				</div>
 			</div>
 			<!-- Right Side Content / End -->
@@ -292,7 +291,7 @@ $errorMessage = "Oops! Looks like there was a problem with registration";
 	</div>
 	<!-- Header / End -->
 
-</header>
+
 <div class="clearfix"></div>
 <!-- Header Container / End -->
 

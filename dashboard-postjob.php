@@ -59,6 +59,14 @@ if (isset($_POST['postjob']))
 		exit();
   }
 
+    if (!is_numeric($_POST["budget"]))
+  {
+		
+		$_SESSION['ErrorMessage'] = "Please do not enter any currency details, full stops or commas in the budget field. Click back on your browser to try again.";
+		header("Location:refer-error.php");
+		exit();
+  }
+
   #prepared statements are made use of to prevent the use of MySQL injection
 	
 $stmt = $conn->prepare("INSERT INTO Jobs (Title,Description,Location,Postcode,PostDate,Budget,PosterId,CategoryId) 
