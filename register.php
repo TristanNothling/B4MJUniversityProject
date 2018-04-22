@@ -58,7 +58,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 if (empty($_POST["username"]) or empty($_POST["password2"]) or empty($_POST["email2"]))
   {
 		
-		$_SESSION['ErrorMessage'] = "You didn&apos;t enter a username, password, or email.";
+		$_SESSION['ErrorMessage'] = "You didn&apos;t enter all of the following: Username, Password, or Email.";
 		header("Location:refer-error.php");
 		exit();
   }
@@ -73,11 +73,20 @@ if ($_POST["email"]!=$_POST["email2"])
 
   if ($_POST["password"]!=$_POST["password2"])
   {
-		
 		$_SESSION['ErrorMessage'] = "Passwords did not match.";
 		header("Location:refer-error.php");
 		exit();
   }
+
+	$username = $_POST['username'];
+	$result = $conn->query("SELECT * FROM Users WHERE Username='$username';");
+
+	if ($result->num_rows == 1) 
+{
+		$_SESSION['ErrorMessage'] = "That username is taken already, sorry.";
+		header("Location:refer-error.php");
+		exit();
+}
 
 $stmt = $conn->prepare("INSERT INTO Users (Username,Password,FirstName,LastName,Email,RegDate,Credits) VALUES (?,?,?,?,?,?,?)");
 $stmt->bind_param("ssssssi",$username,$password,$firstname,$lastname,$email,$regdate,$credits);
@@ -243,9 +252,10 @@ $errorMessage = "Oops! Looks like there was a problem with registration";
 							</p>
 								
 							<p class="form-row form-row-wide">
-								<label for="username2">Your Username:
+								<label id="texthint" for="username2">Username:
 									<i class="im im-icon-Male"></i>
-									<input type="text" class="input-text" name="username" id="username" value="" />
+									<input type="text" class="input-text" name="username" onfocusout="checkUser('regusername2','hintText2')" id="regusername2" value="" /><p id="hintText2">
+
 								</label>
 							</p>
 								
@@ -326,10 +336,10 @@ if ($error == true)
 								</label>
 							</p>
 								
-							<p class="form-row form-row-wide">
+							<p id="userpar" class="form-row form-row-wide">
 								<label for="username2">Your Username:
 									<i class="im im-icon-Male"></i>
-									<input type="text" class="input-text" name="username" id="username" value="" />
+									<input type="text" class="input-text" name="username" onfocusout="checkUser('regusername','hintText')" id="regusername" value="" /><p id="hintText"></p>
 								</label>
 							</p>
 								
@@ -438,6 +448,29 @@ if ($error == true)
 
 <!-- Scripts
 ================================================== -->
+<script>
+function checkUser(whichInput,whichHint) {
+    var x = document.getElementById(whichInput);
+    var username = x.value;
+    if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+    xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById(whichHint).innerHTML = this.responseText;
+            }
+        };
+
+        xmlhttp.open("GET","username-exists.php?user="+username,true);
+        xmlhttp.send();
+}
+</script>
+
+
 <script type="text/javascript" src="scripts/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="scripts/mmenu.min.js"></script>
 <script type="text/javascript" src="scripts/chosen.min.js"></script>
