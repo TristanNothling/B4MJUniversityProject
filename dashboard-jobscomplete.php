@@ -3,7 +3,7 @@
 
 <!-- Basic Page Needs
 ================================================== -->
-<title>Bid4myjob - My Bids</title>
+<title>Bid4myjob - Dashboard</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -45,7 +45,7 @@ if (!mysqli_query($conn, $sql)) {
 
 date_default_timezone_set('Europe/London'); #To correct an error where registered users were given a reg date an hour late.
 
-$sql = "SELECT Bids.Id as bidid,Price,PosterId,Message,JobId,BidderId,DateTimeBid,Jobs.Id as jobid, Users.Id as userid,Username,Title FROM Bids,Jobs,Users WHERE Users.Id=PosterId AND Bids.JobId=Jobs.Id AND BidderId=" . $_SESSION['Id'] ;
+$sql = "SELECT Jobs.Id,PosterID,Title,Description,Location,Postcode,Name,Categories.Id as catid FROM Jobs, Categories WHERE Categories.Id=Jobs.CategoryId AND Complete=TRUE AND PosterId=" . $_SESSION['Id'] ;
 
 #$sql = "SELECT * FROM Jobs WHERE PosterId=" . $_SESSION['Id'] ;
 $result = $conn->query($sql);
@@ -71,13 +71,13 @@ $result = $conn->query($sql);
 		<div id="titlebar">
 			<div class="row">
 				<div class="col-md-12">
-					<h2>My Bids</h2>
+					<h2>My Jobs</h2>
 					<!-- Breadcrumbs -->
 					<nav id="breadcrumbs">
 						<ul>
 							<li><a href="#">Home</a></li>
 							<li><a href="#">Dashboard</a></li>
-							<li>My Bids</li>
+							<li>My Jobs</li>
 						</ul>
 					</nav>
 				</div>
@@ -89,7 +89,7 @@ $result = $conn->query($sql);
 			<!-- Listings -->
 			<div class="col-lg-12 col-md-12">
 				<div class="dashboard-list-box margin-top-0">
-					<h4>All Bids</h4>
+					<h4>All jobs</h4>
 					
 					<ul>
 
@@ -104,26 +104,18 @@ if ($result->num_rows > 0) {
 
 						<li>
 							<div class="list-box-listing">
-
+								<div class="list-box-listing-img"><a href='view-job.php?id=<?php echo $row["Id"]; ?>'><img src="images/listing-item-01.jpg" alt=""></a></div>
 								<div class="list-box-listing-content">
 									<div class="inner">
-										<h3><a href='view-job.php?id=<?php echo $row["jobid"]; ?>'><?php echo $row["Title"]; ?></a></h3>
-										<p style="color:#704FEC;">Posted by: <a href='view-user.php?id=<?php echo $row["PosterId"]; ?>'><?php echo $row["Username"]; ?></a></p> 
-										  
-										<span style="font-size:20px;margin:16px;color:#704FEC;">For <?php echo $row["Price"]; ?> credits.</span></br>
-										<span>Your message: <?php if (strlen($row["Message"]) < 100) 
-									{ 
-										echo $row["Message"]; 
-									} 
-									else 
-									{
-										echo substr($row["Message"],0,100)."...";
-									} ?></span>
+										<h3><a href='view-job.php?id=<?php echo $row["Id"]; ?>'><?php echo $row["Title"]; ?> </a></h3>
+										<span><?php echo $row["Location"]; ?></span>
+										<p style="color:#704FEC;"><?php echo $row["Name"]; ?> </p>
 									</div>
 								</div>
 							</div>
 							<div class="buttons-to-right">
-								<a href='view-job.php?id=<?php echo $row["jobid"]; ?>' class="button gray"><i class="sl sl-icon-note"></i>View Job</a>
+								<a href='view-job.php?id=<?php echo $row["Id"]; ?>' class="button gray"><i class="sl sl-icon-note"></i>0 Bids (View)</a>
+								<a href='delete-job.php?id=<?php echo $row["Id"]; ?>' class="button gray"><i class="sl sl-icon-close"></i> Delete</a>
 							</div>
 						</li>
 
@@ -132,7 +124,7 @@ if ($result->num_rows > 0) {
 }
 else
 {
-	echo "<p style='padding:32px;'>It looks like you haven&apos;t bidded on any jobs. Why not <a href='browse-jobs.php'>bid on one now?</a></p>";
+	echo "<p style='padding:32px;'>It looks like you haven&apos;t posted any jobs. Why not <a href='dashboard-postjob.php'>post one now?</a></p>";
 }
 ?>
 

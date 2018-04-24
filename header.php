@@ -27,13 +27,6 @@
 				<nav id="navigation" class="style-1">
 					<ul id="responsive">
 						<li><a href="browse-jobs.php">Browse jobs</a></li>
-						<li><a href="#">About</a>
-							<ul>
-								<li><a href="hot-it-works.php">How it works</a></li>
-								<li><a href="privacy-policy.php">Privacy policy</a></li>
-								<li><a href="faq.php">FAQ</a></li>
-								<li><a href="contact.php">Contact us</a></li>
-						</li>
 					</ul>
 				</nav>
 				<div class="clearfix"></div>
@@ -51,7 +44,7 @@
 						<ul>
 							<li><a href="dashboard.php"><i class="sl sl-icon-screen-desktop"></i> Dashboard</a></li>
 							<li><a href="browse-jobs.php"><i class="sl sl-icon-magnifier"></i> Browse all jobs</a></li>
-							<li><a href="dashboard-messages.php"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
+
 							<li><a href="logout.php"><i class="sl sl-icon-power"></i> Logout</a></li>
 						</ul>
 					</div>
@@ -100,16 +93,13 @@
 										<input class="input-text" type="password" name="password" id="password"/>
 									</label>
 									<span class="lost_password">
-										<a href="lost-your-password.php" >Lost Your Password?</a>
+										<a href="reset-password.php" >Forgotten Your Password?</a>
 									</span>
 								</p>
 
 								<div class="form-row">
 									<input type="submit" class="button border margin-top-5" name="login" value="Login" />
-									<div class="checkboxes margin-top-10">
-										<input id="remember-me" type="checkbox" name="check">
-										<label for="remember-me">Remember Me</label>
-									</div>
+									
 								</div>
 							</form>
 						</div>

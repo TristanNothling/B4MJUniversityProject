@@ -59,47 +59,7 @@ $result = $conn->query($sql);
 <!-- Dashboard -->
 <div id="dashboard">
 
-	<!-- Navigation
-	================================================== -->
-
-	<!-- Responsive Navigation Trigger -->
-	<a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
-
-	<div class="dashboard-nav">
-		<div class="dashboard-nav-inner">
-
-			<ul data-submenu-title="Main">
-				<li class="active"><a href="dashboard.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-				<li><a href="dashboard-messages.php"><i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages">1</span></a></li>
-				<li><a><i class="sl sl-icon-layers"></i> My Bids</a>
-					<ul>
-						<li><a href="dashboard-bidsall.php"> All <span class="nav-tag blue">1</span></a></li>
-						<li><a href="dashboard-bidswon.php"> Won <span class="nav-tag blue">1</span></a></li>
-						<li><a href="dashboard-bidscomplete.php"> Completed <span class="nav-tag green">1</span></a></li>
-					</ul>	
-				</li>
-			</ul>
-			
-			<ul data-submenu-title="Jobs">
-				<li><a><i class="sl sl-icon-layers"></i> My Jobs</a>
-					<ul>
-						<li><a href="dashboard-jobsall.php"> All <span class="nav-tag blue">6</span></a></li>
-						<li><a href="dashboard-jobsprog.php"> In progress <span class="nav-tag blue">1</span></a></li>
-						<li><a href="dashboard-jobscomplete.html"> Completed <span class="nav-tag green">2</span></a></li>
-					</ul>	
-				</li>
-				<li><a href="dashboard-postjob.php"><i class="sl sl-icon-plus"></i> Post a job</a></li>
-			</ul>	
-
-			<ul data-submenu-title="Account">
-				<li><a href="dashboard-reviews.php"><i class="fa fa-calendar-check-o"></i> My Reviews</a></li>
-				<li><a href="dashboard-profile.php"><i class="sl sl-icon-user"></i> My Profile</a></li>
-				<li><a href="logout.php"><i class="sl sl-icon-power"></i> Logout</a></li>
-			</ul>
-			
-		</div>
-	</div>
-	<!-- Navigation / End -->
+<?php include 'dashboard-nav.php'; ?>
 
 
 	<!-- Content
@@ -153,26 +113,43 @@ if ($result->num_rows > 0) {
 				</div>
 			</div>
 
+
+<?php 
+	}}
+
+	$sql = "SELECT * FROM Jobs WHERE Complete=TRUE AND WinnerId=" . $_SESSION['Id'];
+	$result = $conn->query($sql);
+	$numberJobs = $result->num_rows;
+	?>
+
 		<!-- Item select all jobs where bidderID=sessionID and complete=true, count number of rows-->
 			<div class="col-lg-3 col-md-6">
 				<div class="dashboard-stat color-5">
-					<div class="dashboard-stat-content"><h4>0</h4> <span>Jobs you&apos;ve completed</span></div>
+					<div class="dashboard-stat-content"><h4><?php echo $numberJobs; ?></h4> <span>Jobs you&apos;ve completed</span></div>
 					<div class="dashboard-stat-icon"><i class="im im-icon-Tee-Mug"></i></div>
 				</div>
 			</div>
 
-		<!-- Item count rows of jobs you've posted that are complete divded by jobs youve posted, * by 100-->
+			<?php 
+	
+	$sql = "SELECT * FROM Bids WHERE BidderId=" . $_SESSION['Id'];
+	$result = $conn->query($sql)->num_rows;
+
+	$sql = "SELECT * FROM Jobs WHERE WinnerId=" . $_SESSION['Id'];
+	$result2 = $conn->query($sql)->num_rows;
+
+	$biddingRate = ($result/$result2)*100
+	?>
+
+		<!-- Item count rows of jobs you've bid on divided by number of jobs you won, * by 100-->
 			<div class="col-lg-3 col-md-6">
 				<div class="dashboard-stat color-4">
-					<div class="dashboard-stat-content"><h4>100</h4> <span>Bidding success rate (&#37;)</span></div>
+					<div class="dashboard-stat-content"><h4><?php echo $biddingRate; ?></h4> <span>Bidding success rate (&#37;)</span></div>
 					<div class="dashboard-stat-icon"><i class="im im-icon-Money-Smiley"></i></div>
 				</div>
 			</div>
 
-<?php
-}
-}
-?>
+
 
 <div class="col-lg-6 col-md-12">
 				<div class="dashboard-list-box invoices with-icons margin-top-20">
@@ -286,7 +263,5 @@ if ($result->num_rows > 0)
 <script type="text/javascript" src="scripts/jquery-ui.min.js"></script>
 <script type="text/javascript" src="scripts/tooltips.min.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
-
-
 </body>
 </html>

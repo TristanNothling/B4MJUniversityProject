@@ -87,7 +87,7 @@ $result = $conn->query($sql);
 <div class="container">
 	<div class="row">
 		
-		<!-- Search -->
+		<!-- Search 
 		<div class="col-md-12">
 			<div class="main-search-input gray-style margin-top-0 margin-bottom-10">
 
@@ -114,28 +114,28 @@ $result = $conn->query($sql);
 				<button class="button">Search</button>
 			</div>
 		</div>
-		<!-- Search Section / End -->
+		 Search Section / End -->
 
 
 		<div class="col-md-12">
 
-			<!-- Sorting - Filtering Section -->
+			<!-- Sorting - Filtering Section 
 			<div class="row margin-bottom-25 margin-top-30">
 
 				<div class="col-md-6">
-					<!-- Layout Switcher -->
+					 Layout Switcher 
 
 				</div>
 
 				<div class="col-md-6">
 					<div class="fullwidth-filters">
 						
-						<!-- Panel Dropdown -->
+						 Panel Dropdown 
 						<div class="panel-dropdown wide float-right">
 							<a href="#">More Filters</a>
 							<div class="panel-dropdown-content checkboxes">
 
-								<!-- Checkboxes -->
+								 Checkboxes 
 								<div class="row">
 									<div class="col-md-6">
 										<input id="check-a" type="checkbox" name="check">
@@ -166,7 +166,7 @@ $result = $conn->query($sql);
 									</div>
 								</div>
 								
-								<!-- Buttons -->
+								 Buttons 
 								<div class="panel-buttons">
 									<button class="panel-cancel">Cancel</button>
 									<button class="panel-apply">Apply</button>
@@ -174,9 +174,9 @@ $result = $conn->query($sql);
 
 							</div>
 						</div>
-						<!-- Panel Dropdown / End -->
+						 Panel Dropdown / End 
 
-						<!-- Panel Dropdown-->
+						 Panel Dropdown
 						<div class="panel-dropdown float-right">
 							<a href="#">Distance Radius</a>
 							<div class="panel-dropdown-content">
@@ -187,9 +187,9 @@ $result = $conn->query($sql);
 								</div>
 							</div>
 						</div>
-						<!-- Panel Dropdown / End -->
+						 Panel Dropdown / End 
 
-						<!-- Sort by -->
+						 Sort by 
 						<div class="sort-by">
 							<div class="sort-by-select">
 								<select data-placeholder="Default order" class="chosen-select-no-single">
@@ -201,13 +201,13 @@ $result = $conn->query($sql);
 								</select>
 							</div>
 						</div>
-						<!-- Sort by / End -->
+						 Sort by / End 
 
 					</div>
 				</div>
 
 			</div>
-			<!-- Sorting - Filtering Section / End -->
+			 Sorting - Filtering Section / End -->
 
 			<div class="row">
 
@@ -275,69 +275,7 @@ else
 </div>
 
 
-<!-- Footer
-================================================== -->
-<div id="footer" class="margin-top-15">
-	<!-- Main -->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5 col-sm-6">
-				<img class="footer-logo" src="images/logo.png" alt="">
-				<br><br>
-				<p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-			</div>
-
-			<div class="col-md-4 col-sm-6 ">
-				<h4>Helpful Links</h4>
-				<ul class="footer-links">
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Sign Up</a></li>
-					<li><a href="#">My Account</a></li>
-					<li><a href="#">Add Listing</a></li>
-					<li><a href="#">Pricing</a></li>
-					<li><a href="#">Privacy Policy</a></li>
-				</ul>
-
-				<ul class="footer-links">
-					<li><a href="#">FAQ</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Our Partners</a></li>
-					<li><a href="#">How It Works</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>		
-
-			<div class="col-md-3  col-sm-12">
-				<h4>Contact Us</h4>
-				<div class="text-widget">
-					<span>12345 Little Lonsdale St, Melbourne</span> <br>
-					Phone: <span>(123) 123-456 </span><br>
-					E-Mail:<span> <a href="#">office@example.com</a> </span><br>
-				</div>
-
-				<ul class="social-icons margin-top-20">
-					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-					<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-				</ul>
-
-			</div>
-
-		</div>
-		
-		<!-- Copyright -->
-		<div class="row">
-			<div class="col-md-12">
-				<div class="copyrights">© 2017 Listeo. All Rights Reserved.</div>
-			</div>
-		</div>
-
-	</div>
-
-</div>
-<!-- Footer / End -->
+<?php include 'footer.php'; ?> <!-- For -->
 
 
 <!-- Back To Top Button -->

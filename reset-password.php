@@ -21,11 +21,6 @@ session_start();
 $error = false;
 $errorMessage = "";
 
-if (isset($_SESSION['Id'])){header("Location:dashboard.php");}
-
-if (isset($_POST['login']))
-
-{
 $servername = "localhost";
 $user = "root";
 $pass = "";
@@ -50,6 +45,49 @@ if (!mysqli_query($conn, $sql)) {
 
 date_default_timezone_set('Europe/London'); #To correct an error where registered users were given a reg date an hour late.
 
+if (isset($_SESSION['Id'])){header("Location:dashboard.php");}
+
+if (isset($_POST['stage1']))
+{
+	if ($_POST['emailreset1'] == $_POST['emailreset2'])
+	{
+
+	$email_address = $_POST['emailreset1'];
+
+$result = $conn->query("SELECT * FROM Users WHERE Email='$email_address'");
+
+if ($result->num_rows == 1) 
+{
+$to = $_POST['emailreset2'];
+$subject = "Password reset link for bid4myjob";
+$txt = "Hello world!";
+$headers = "From: support@bid4myjob.com" . "\r\n" ;
+
+if (mail($to,$subject,$txt,$headers))
+{
+	$sent_email_success = true;
+}
+else
+{
+	//set error message to email not sent
+}
+}
+
+else
+{
+	//no user exists with that email address
+}
+}
+else
+{
+	//set error message to emails did not match
+}
+}
+
+
+if (isset($_GET['reset-link']))
+
+{
 if (!$error){
 
 $username = $_POST["username"];
@@ -74,6 +112,7 @@ $errorMessage = "Sorry, the username or password you entered was incorrect.";
 }
 }
 
+
 ?>
 
 <!-- Wrapper -->
@@ -86,7 +125,7 @@ $errorMessage = "Sorry, the username or password you entered was incorrect.";
 ================================================== -->
 <div style="width:340px;margin: 40px auto;">
 
-	<form method="post" class="login" action="login.php"><h2>Login</h2>
+	<form method="post" class="login" name="stage1" action="reset-password.php"><h2>Forgotten your password?</h2><h3>Reset it here.</h3>
 			
 <?php 
 if ($error == true)
@@ -98,30 +137,35 @@ if ($error == true)
 }
 ?>
 
+<?php 
+if ($sent_email_success == true) //this if should check whether a user with that email exists above, then set a var
+{
+			echo '<div class="notification notice closeable">';
+			echo '<p>Please check your email inbox for a password reset link.</p>';
+			echo '<a class="close" href="#"></a>';
+			echo '</div>';
+}
+?>
+
 								<p class="form-row form-row-wide">
-									<label for="username">Username:
+									<label for="emailreset1">Please enter your email address:
 										<i class="im im-icon-Male"></i>
-										<input type="text" class="input-text" name="username" id="username" value=""/>
+										<input type="text" class="input-text" name="emailreset1" id="em1" value=""/>
 									</label>
 								</p>
 
 								<p class="form-row form-row-wide">
-									<label for="password">Password:
+									<label for="emailreset2">Please confirm your email address:
 										<i class="im im-icon-Lock-2"></i>
-										<input class="input-text" type="password" name="password" id="password"/>
+										<input class="input-text" type="text" name="emailreset2" id="em2"/>
 									</label>
-									<span class="lost_password">
-										<a href="reset-password.php" >Forgotten Your Password?</br></a>
-									</span>
 
 								</p>
 
 								<div class="form-row">
-									<input type="submit" class="button border margin-top-5" name="login" value="Login" />
+									<input type="submit" class="button border margin-top-5" name="stage1" value="Send Reset Email" />
 								</div>
-	</form><p></br>Not registered with Bid4MyJob?</p>
-
-					<a href="register.php" class="button border margin-top-10">Sign up today</a>
+	</form>
 </div>
 
 

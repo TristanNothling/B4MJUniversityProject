@@ -40,7 +40,7 @@
 						<ul>
 							<li><a href="dashboard.php"><i class="sl sl-icon-screen-desktop"></i> Dashboard</a></li>						
 							<li><a href="browse-jobs.php"><i class="sl sl-icon-magnifier"></i> Browse all jobs</a></li>
-							<li><a href="dashboard-messages.php"><i class="sl sl-icon-envelope-open"></i> Messages</a></li>
+
 							<li><a href="logout.php"><i class="sl sl-icon-power"></i> Logout</a></li>
 						</ul>
 					</div>

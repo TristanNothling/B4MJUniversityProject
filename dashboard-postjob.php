@@ -73,11 +73,11 @@ $stmt = $conn->prepare("INSERT INTO Jobs (Title,Description,Location,Postcode,Po
 	VALUES (?,?,?,?,?,?,?,?)");
 $stmt->bind_param("sssssiii",$title,$description,$location,$postcode,$postdate,$budget,$posterid,$categoryID);
 
-$title = mysql_real_escape_string($_POST["title"]);
-$description = mysql_real_escape_string($_POST["description"]);
-$location = mysql_real_escape_string($_POST["location"]);
-$postcode = mysql_real_escape_string($_POST["postcode"]);
-$budget = mysql_real_escape_string($_POST["budget"]);
+$title = $_POST["title"];
+$description = $_POST["description"];
+$location = $_POST["location"];
+$postcode = $_POST["postcode"];
+$budget = $_POST["budget"];
 $postdate = date('Y-m-d H:i:s');
 $posterid = $_SESSION['Id'];
 $categoryID = $_POST["category"];
@@ -116,49 +116,9 @@ header("Location:index.php");
 	<script>
 	window.location = 'view-job.php?id=<?php echo $last_id ?>';
 	</script>
-	<?php } ?>
+	<?php } 
 
-	<!-- Navigation
-	================================================== -->
-
-	<!-- Responsive Navigation Trigger -->
-	<a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
-
-	<div class="dashboard-nav">
-		<div class="dashboard-nav-inner">
-
-			<ul data-submenu-title="Main">
-				<li><a href="dashboard.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-				<li><a href="dashboard-messages.php"><i class="sl sl-icon-envelope-open"></i> Messages <span class="nav-tag messages">1</span></a></li>
-				<li><a><i class="sl sl-icon-layers"></i> My Bids</a>
-					<ul>
-						<li><a href="dashboard-bidsall.php"> All <span class="nav-tag blue">1</span></a></li>
-						<li><a href="dashboard-bidswon.php"> Won <span class="nav-tag blue">1</span></a></li>
-						<li><a href="dashboard-bidscomplete.php"> Completed <span class="nav-tag green">1</span></a></li>
-					</ul>	
-				</li>
-			</ul>
-			
-			<ul data-submenu-title="Jobs">
-				<li><a><i class="sl sl-icon-layers"></i> My Jobs</a>
-					<ul>
-						<li><a href="dashboard-jobsall.php"> All <span class="nav-tag blue">6</span></a></li>
-						<li><a href="dashboard-jobsprog.php"> In progress <span class="nav-tag blue">1</span></a></li>
-						<li><a href="dashboard-jobscomplete.html"> Completed <span class="nav-tag green">2</span></a></li>
-					</ul>	
-				</li>
-				<li class="active"><a href="dashboard-postjob.php"><i class="sl sl-icon-plus"></i> Post a job</a></li>
-			</ul>	
-
-			<ul data-submenu-title="Account">
-				<li><a href="dashboard-reviews.php"><i class="fa fa-calendar-check-o"></i> My Reviews</a></li>
-				<li><a href="dashboard-profile.php"><i class="sl sl-icon-user"></i> My Profile</a></li>
-				<li><a href="logout.php"><i class="sl sl-icon-power"></i> Logout</a></li>
-			</ul>
-			
-		</div>
-	</div>
-	<!-- Navigation / End -->
+	include 'dashboard-nav.php'; ?>
 
 
 	<!-- Content
@@ -316,6 +276,16 @@ while($row = $result->fetch_assoc())
 <!-- DropZone | Documentation: http://dropzonejs.com -->
 <script type="text/javascript" src="scripts/dropzone.js"></script>
 
+<script type="text/javascript">
 
+    var nav = document.getElementById('nav'),
+        anchor = nav.getElementsByTagName('li'),
+        current = window.location.pathname.split('/')[1];
+        for (var i = 0; i < anchor.length; i++) {
+        if(anchor[i].href == current) {
+            anchor[i].className = "active";
+        }
+
+</script>
 </body>
 </html>

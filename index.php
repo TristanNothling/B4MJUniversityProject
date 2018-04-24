@@ -73,16 +73,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 							<a href="#"><i class="fa fa-dot-circle-o"></i></a>
 						</div>
 
-						<div class="main-search-input-item">
-							<select data-placeholder="All Categories" class="chosen-select" >
-								<option>All Categories</option>	
-								<option>Shops</option>
-								<option>Hotels</option>
-								<option>Restaurants</option>
-								<option>Fitness</option>
-								<option>Events</option>
-							</select>
-						</div>
+
 
 						<button class="button" onclick="window.location.href='dashboard-postjob.php'">Post your job</button>
 
@@ -120,7 +111,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 
 			<!-- this (first) box will be hidden under 1680px resolution -->
 			<div class="category-box-container half">
-				<a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="images/category-box-01.jpg">
+				<a href="browse-jobs.php" class="category-box" data-background-image="images/category-box-01.jpg">
 					<div class="category-box-content">
 						<h3>Hotels</h3>
 						<span>64 listings</span>
@@ -130,7 +121,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 			</div>
 
 			<div class="category-box-container half">
-				<a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="images/category-box-02.jpg">
+				<a href="browse-jobs.php" class="category-box" data-background-image="images/category-box-02.jpg">
 					<div class="category-box-content">
 						<h3>Shops</h3>
 						<span>14 listings</span>
@@ -143,7 +134,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 		<!-- Item -->
 		<div class="fw-carousel-item">
 			<div class="category-box-container">
-				<a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="images/category-box-03.jpg">
+				<a href="browse-jobs.php" class="category-box" data-background-image="images/category-box-03.jpg">
 					<div class="category-box-content">
 						<h3>Events</h3>
 						<span>67 listings</span>
@@ -156,7 +147,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 		<!-- Item -->
 		<div class="fw-carousel-item">
 			<div class="category-box-container">
-				<a href="listings-half-screen-map-grid-1.html" class="category-box" data-background-image="images/category-box-04.jpg">
+				<a href="browse-jobs.php" class="category-box" data-background-image="images/category-box-04.jpg">
 					<div class="category-box-content">
 						<h3>Fitness</h3>
 						<span>27 listings</span>
@@ -169,7 +160,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 		<!-- Item -->
 		<div class="fw-carousel-item">
 			<div class="category-box-container">
-				<a href="listings-half-screen-map-list.html" class="category-box" data-background-image="images/category-box-05.jpg">
+				<a href="browse-jobs.php" class="category-box" data-background-image="images/category-box-05.jpg">
 					<div class="category-box-content">
 						<h3>Nightlife</h3>
 						<span>22 listings</span>
@@ -182,7 +173,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 		<!-- Item -->
 		<div class="fw-carousel-item">
 			<div class="category-box-container">
-				<a href="listings-half-screen-map-list.html" class="category-box" data-background-image="images/category-box-06.jpg">
+				<a href="browse-jobs.php" class="category-box" data-background-image="images/category-box-06.jpg">
 					<div class="category-box-content">
 						<h3>Eat & Drink</h3>
 						<span>130 listings</span>
@@ -241,147 +232,10 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 <!-- Info Section / End -->
 
 
-<!-- Recent Blog Posts -->
-<section class="fullwidth border-top margin-top-70 padding-top-75 padding-bottom-75" data-background-color="#fff">
-	<div class="container">
+<?php include 'blog-posts-section.php'; ?> 
 
-		<div class="row">
-			<div class="col-md-12">
-				<h3 class="headline centered margin-bottom-45">
-					From The Blog
-				</h3>
-			</div>
-		</div>
+<?php include 'footer.php'; ?> 
 
-		<div class="row">
-			<!-- Blog Post Item -->
-			<div class="col-md-4">
-				<a href="pages-blog-post.html" class="blog-compact-item-container">
-					<div class="blog-compact-item">
-						<img src="images/blog-compact-post-01.jpg" alt="">
-						<span class="blog-item-tag">Tips</span>
-						<div class="blog-compact-item-content">
-							<ul class="blog-post-tags">
-								<li>22 August 2017</li>
-							</ul>
-							<h3>Hotels for All Budgets</h3>
-							<p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque.</p>
-						</div>
-					</div>
-				</a>
-			</div>
-			<!-- Blog post Item / End -->
-
-			<!-- Blog Post Item -->
-			<div class="col-md-4">
-				<a href="pages-blog-post.html" class="blog-compact-item-container">
-					<div class="blog-compact-item">
-						<img src="images/blog-compact-post-02.jpg" alt="">
-						<span class="blog-item-tag">Tips</span>
-						<div class="blog-compact-item-content">
-							<ul class="blog-post-tags">
-								<li>18 August 2017</li>
-							</ul>
-							<h3>The 50 Greatest Street Arts In London</h3>
-							<p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque.</p>
-						</div>
-					</div>
-				</a>
-			</div>
-			<!-- Blog post Item / End -->
-
-			<!-- Blog Post Item -->
-			<div class="col-md-4">
-				<a href="pages-blog-post.html" class="blog-compact-item-container">
-					<div class="blog-compact-item">
-						<img src="images/blog-compact-post-03.jpg" alt="">
-						<span class="blog-item-tag">Tips</span>
-						<div class="blog-compact-item-content">
-							<ul class="blog-post-tags">
-								<li>10 August 2017</li>
-							</ul>
-							<h3>The Best Cofee Shops In Sydney Neighborhoods</h3>
-							<p>Sed sed tristique nibh iam porta volutpat finibus. Donec in aliquet urneget mattis lorem. Pellentesque pellentesque.</p>
-						</div>
-					</div>
-				</a>
-			</div>
-			<!-- Blog post Item / End -->
-
-			<div class="col-md-12 centered-content">
-				<a href="pages-blog.html" class="button border margin-top-10">View Blog</a>
-			</div>
-
-		</div>
-
-	</div>
-</section>
-<!-- Recent Blog Posts / End -->
-
-
-<!-- Footer
-================================================== -->
-<div id="footer" class="sticky-footer">
-	<!-- Main -->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-5 col-sm-6">
-				<img class="footer-logo" src="images/logo.png" alt="">
-				<br><br>
-				<p>Morbi convallis bibendum urna ut viverra. Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper.</p>
-			</div>
-
-			<div class="col-md-4 col-sm-6 ">
-				<h4>Helpful Links</h4>
-				<ul class="footer-links">
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Sign Up</a></li>
-					<li><a href="#">My Account</a></li>
-					<li><a href="#">Add Listing</a></li>
-					<li><a href="#">Pricing</a></li>
-					<li><a href="#">Privacy Policy</a></li>
-				</ul>
-
-				<ul class="footer-links">
-					<li><a href="#">FAQ</a></li>
-					<li><a href="#">Blog</a></li>
-					<li><a href="#">Our Partners</a></li>
-					<li><a href="#">How It Works</a></li>
-					<li><a href="#">Contact</a></li>
-				</ul>
-				<div class="clearfix"></div>
-			</div>		
-
-			<div class="col-md-3  col-sm-12">
-				<h4>Contact Us</h4>
-				<div class="text-widget">
-					<span>12345 Little Lonsdale St, Melbourne</span> <br>
-					Phone: <span>(123) 123-456 </span><br>
-					E-Mail:<span> <a href="#">office@example.com</a> </span><br>
-				</div>
-
-				<ul class="social-icons margin-top-20">
-					<li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
-					<li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
-					<li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
-					<li><a class="vimeo" href="#"><i class="icon-vimeo"></i></a></li>
-				</ul>
-
-			</div>
-
-		</div>
-		
-		<!-- Copyright -->
-		<div class="row">
-			<div class="col-md-12">
-				<div class="copyrights">© 2018 Bid4myjob. All Rights Reserved.</div>
-			</div>
-		</div>
-
-	</div>
-
-</div>
-<!-- Footer / End -->
 
 <!-- Back To Top Button -->
 <div id="backtotop"><a href="#"></a></div>
