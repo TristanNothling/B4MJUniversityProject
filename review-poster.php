@@ -29,34 +29,36 @@ if (!mysqli_query($conn, $sql)) {
 
 date_default_timezone_set('Europe/London'); #To correct an error where registered users were given a reg date an hour late.
 
-if (isset($_POST['bidsubmit']))
+if (isset($_POST['review']))
 {
 
-    if (!is_numeric($_POST["price"]))
+  if ($_POST["rating"]<0 || $_POST["rating"]>5)
   {
 		
-		$_SESSION['ErrorMessage'] = "Please do not enter any currency details, full stops or commas in the price field. Click back on your browser to try again.";
+		$_SESSION['ErrorMessage'] = "You can only enter a whole number between 1 and 5 when reviewing a user. Please hit back to try again.";
 		header("Location:refer-error.php");
 		exit();
   }
 
-$stmt = $conn->prepare("INSERT INTO Bids (Price,Message,JobId,BidderId,DateTimeBid) VALUES (?,?,?,?,?)");
-$stmt->bind_param("isiis",$price,$message,$jobid,$userid,$postdate);
+	
+$stmt = $conn->prepare("INSERT INTO PosterReviews (RecipientId,PosterId,Rating,Feedback,TimeAndDateStamp,JobId) VALUES (?,?,?,?,?,?)");
 
+$stmt->bind_param("iiissi",$recipientid,$posterid,$rating,$feedback,$datetimerev,$jobid);
+
+$recipientid = $_POST['recipientid'];
+$posterid = $_SESSION['Id'];
+$rating = $_POST["rating"];
+$feedback = $_POST["feedback"];
+$datetimerev = date('Y-m-d H:i:s');
 $jobid = $_POST["jobid"];
-$userid = $_SESSION['Id'];
-$price = $_POST["price"];
-$message = $_POST["message"];
-$postdate = date('Y-m-d H:i:s');
 
 $stmt->execute();
 
-header("Location:view-job.php?id=" . $_POST["jobid"]);
-
+header("Location:dashboard.php");
 }
 else
 {
-header("Location:bid-error.php");
+header("Location:review-error.php");
 }
 
 ?>

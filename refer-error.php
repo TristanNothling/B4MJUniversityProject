@@ -70,7 +70,7 @@ else
 
 </div>								
 
-<?php include 'header.php'; ?> 
+<?php include 'footer.php'; ?> 
 
 <!-- Back To Top Button -->
 <div id="backtotop"><a href="#"></a></div>

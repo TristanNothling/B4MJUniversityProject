@@ -105,17 +105,25 @@ if ($result->num_rows > 0) {
 				</div>
 			</div>
 
+			<?php 
+	}}
+
+	$sql = "SELECT * FROM Jobs WHERE PosterId=" . $_SESSION['Id'];
+	$result = $conn->query($sql);
+	$numberJobs = $result->num_rows;
+	?>
+
 		<!-- Item calculate by selecting all reviews as poster and bidder, calculating result-->
 			<div class="col-lg-3 col-md-6">
 				<div class="dashboard-stat color-3">
-					<div class="dashboard-stat-content"><h4>5</h4> <span>Average review score (out of 5)</span></div>
-					<div class="dashboard-stat-icon"><i class="im im-icon-Add-UserStar"></i></div>
+					<div class="dashboard-stat-content"><h4><?php echo $numberJobs; ?></h4> <span>Jobs you&apos;ve posted</span></div>
+					<div class="dashboard-stat-icon"></div>
 				</div>
 			</div>
 
 
 <?php 
-	}}
+	
 
 	$sql = "SELECT * FROM Jobs WHERE Complete=TRUE AND WinnerId=" . $_SESSION['Id'];
 	$result = $conn->query($sql);
@@ -138,13 +146,15 @@ if ($result->num_rows > 0) {
 	$sql = "SELECT * FROM Jobs WHERE WinnerId=" . $_SESSION['Id'];
 	$result2 = $conn->query($sql)->num_rows;
 
-	$biddingRate = ($result/$result2)*100
+	if ($result>0 && $result2>0){
+	$biddingRate = ($result2/$result)*100;
+	}
 	?>
 
 		<!-- Item count rows of jobs you've bid on divided by number of jobs you won, * by 100-->
 			<div class="col-lg-3 col-md-6">
 				<div class="dashboard-stat color-4">
-					<div class="dashboard-stat-content"><h4><?php echo $biddingRate; ?></h4> <span>Bidding success rate (&#37;)</span></div>
+					<div class="dashboard-stat-content"><h4><?php if (isset($biddingRate)) {echo $biddingRate;} else {echo "0";} ?></h4> <span>Bidding success rate (&#37;)</span></div>
 					<div class="dashboard-stat-icon"><i class="im im-icon-Money-Smiley"></i></div>
 				</div>
 			</div>

@@ -12,8 +12,6 @@
 				<li><a><i class="sl sl-icon-layers"></i> My Bids</a>
 					<ul>
 						<li><a href="dashboard-bidsall.php"> All <!--<span class="nav-tag blue">1</span>--></a></li>
-						<li><a href="dashboard-bidswon.php"> Won </a></li>
-						<li><a href="dashboard-bidscomplete.php"> Completed </a></li>
 					</ul>	
 				</li>
 			</ul>
@@ -22,7 +20,6 @@
 				<li><a><i class="sl sl-icon-layers"></i> My Jobs</a>
 					<ul>
 						<li><a href="dashboard-jobsall.php"> All </a></li>
-						<li><a href="dashboard-jobsprog.php"> In progress </a></li>
 						<li><a href="dashboard-jobscomplete.php"> Completed </a></li>
 					</ul>	
 				</li>
@@ -30,8 +27,8 @@
 			</ul>	
 
 			<ul data-submenu-title="Account">
-			<!--	<li><a href="dashboard-reviews.php"><i class="fa fa-calendar-check-o"></i> My Reviews</a></li>
-				<li><a href="dashboard-profile.php"><i class="sl sl-icon-user"></i> My Profile</a></li>-->
+			
+				<li><a href="view-user.php?id=<?php echo $_SESSION['Id']; ?>"><i class="sl sl-icon-user"></i> My Reviews</a></li>
 				<li><a href="logout.php"><i class="sl sl-icon-power"></i> Logout</a></li>
 			</ul>
 			

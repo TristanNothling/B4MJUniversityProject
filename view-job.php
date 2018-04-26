@@ -122,39 +122,92 @@ else
 
 				<!-- Description -->
 
-				<p style="padding:16px;background-color:#f9f7f4"><?php echo $row["Description"] ?></p>
+				<p style="padding:16px;"><?php echo $row["Description"] ?></p>
 
 				<?php 
 				if (isset($_SESSION['Id'])){ 
-				if ($row['PosterId']==$_SESSION['Id'] && isset($row['WinnerId'])) 
+				if ($row['PosterId']==$_SESSION['Id'] ) 
 					{ 
-					if (!isset($row['Complete'])){
+					if (!isset($row['Complete']) && isset($row['WinnerId'])){
 					?>
+
 						<form id="markcomplete" name="mark-complete" action="mark-complete.php" method="POST">
 						<input style="display:none;" type="text" name="jobid" value="<?php echo $row["Id"]; ?>"></input>
 						<button type="submit" name="mark-complete" class="button">Mark as complete</button>
 						</form>
-				<?php 
+
+					<?php 
 					}
-					else
+					if (isset($row['Complete'])){
+					$sql = "SELECT * FROM BidderReviews WHERE JobId=" . $row['Id'];
+					$result = $conn->query($sql);
+
+					if ($result->num_rows == 0) 
 					{
 				?>
-						<form id="reviewBidder" name="review-bidder" action="review-bidder.php" method="POST">
-						<input style="display:none;" type="text" name="userid" value="<?php echo $row['WinnerId']; ?>"></input>
-						<button type="submit" name="review" class="button">Review Bidder</button>
+				<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+					<div class="small-dialog-header">
+						<h3>Review Bidder</h3>
+					</div>
+					<div class="message-reply margin-top-0">
+					<form id="reviewBidder" name="review-bidder" action="review-bidder.php" method="POST">
+					<input style="display:none;" type="text" name="recipientid" value="<?php echo $row['WinnerId']; ?>"></input>
+						<input style="display:none;" type="text" name="posterid" value="<?php echo $_SESSION['Id']; ?>"></input>
+						<input style="display:none;" type="text" name="jobid" value="<?php echo $row['Id']; ?>"></input>
+						<textarea cols="40" name="feedback" rows="3" placeholder="Your review"></textarea>
+						<input name="rating" type="text" placeholder="Your rating out of 5"></input>
+						<button type="submit" name="review" class="button">Post Review</button>
 						</form>
+					</div>
+				</div>
+
+				<a href="#small-dialog" class="send-message-to-owner button popup-with-zoom-anim"><i class="sl sl-icon-envelope-open"></i> Review Bidder</a>
+				
 				<?php
 				}
-				}
-				if ($row['WinnerId']==$_SESSION['Id'] && isset($row['Complete']))
+				else
 				{
-					#ideally database code, check if review already exists for this job id and bidder
+					echo "<p>Thanks for posting a review.</p>";
+				}
+				}
+
+				}
+				if ($row['WinnerId']==$_SESSION['Id'])
+				{
+					if (isset($row['Complete']))
+					{
+					$sql = "SELECT * FROM PosterReviews WHERE JobId=" . $row["Id"];
+					$result = $conn->query($sql);
+
+					if ($result->num_rows == 0) {
 				?>
-						<form id="reviewPoster" name="review-poster" action="review-poster.php" method="POST">
-						<input style="display:none;" type="text" name="userid" value="<?php echo $row['PosterId']; ?>"></input>
-						<button type="submit" name="review" class="button">Review Job Poster</button>
+
+				<div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+					<div class="small-dialog-header">
+						<h3>Review Job Poster</h3>
+					</div>
+					<div class="message-reply margin-top-0">
+					<form id="reviewPoster" name="review-poster" action="review-poster.php" method="POST">
+					<input style="display:none;" type="text" name="recipientid" value="<?php echo $row['PosterId']; ?>"></input>
+						<input style="display:none;" type="text" name="posterid" value="<?php echo $_SESSION['Id']; ?>"></input>
+						<input style="display:none;" type="text" name="jobid" value="<?php echo $row['Id']; ?>"></input>
+						<textarea cols="40" name="feedback" rows="3" placeholder="Your review"></textarea>
+						<input name="rating" type="text" placeholder="Your rating out of 5"></input>
+						<button type="submit" name="review" class="button">Post Review</button>
 						</form>
-				<?php  
+					</div>
+				</div>
+
+				<a href="#small-dialog" class="send-message-to-owner button popup-with-zoom-anim"><i class="sl sl-icon-envelope-open"></i> Review Job Poster</a>
+		
+						
+				<?php 
+						}
+						else
+						{
+							echo "<p>Thanks for posting a review.</p>";
+						}
+					}
 				}
 				}
 				?>
@@ -162,7 +215,7 @@ else
 
 				<h4 class="headline margin-top-70 margin-bottom-30">Bids</h4>
 				<span id="whowon"></span>
-				<table class="basic-table">
+				<table style="margin-bottom:32px;" class="basic-table">
 
 					<?php $sql = "SELECT a.BidderId, a.Price, a.Message, b.Username, b.Id, a.Id as bidId FROM Bids a, Users b WHERE a.BidderId=b.Id AND a.JobId=" . $_GET['id'];
 

@@ -148,6 +148,45 @@ if (mysqli_query($conn, $sql)) {
     echo "Error creating table: " . mysqli_error($conn);
 }
 
+$sql = "CREATE TABLE IF NOT EXISTS PosterReviews (
+    Id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    RecipientId INT UNSIGNED,
+    PosterId INT UNSIGNED,
+    Rating TINYINT UNSIGNED,
+    Feedback VARCHAR(256),
+    TimeAndDateStamp DATETIME,
+    JobId INT UNSIGNED,
+    FOREIGN KEY (JobId) REFERENCES Jobs(Id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (PosterId) REFERENCES Users(Id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (RecipientId) REFERENCES Users(Id) ON UPDATE CASCADE ON DELETE RESTRICT
+    )";
+
+if (mysqli_query($conn, $sql)) {
+    echo "Table PosterReviews created successfully.</br>";
+} else {
+    echo "Error creating table: " . mysqli_error($conn);
+}
+
+
+$sql = "CREATE TABLE IF NOT EXISTS BidderReviews (
+    Id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    RecipientId INT UNSIGNED,
+    PosterId INT UNSIGNED,
+    Rating TINYINT UNSIGNED,
+    Feedback VARCHAR(256),
+    TimeAndDateStamp DATETIME,
+    JobId INT UNSIGNED,
+    FOREIGN KEY (JobId) REFERENCES Jobs(Id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (PosterId) REFERENCES Users(Id) ON UPDATE CASCADE ON DELETE RESTRICT,
+    FOREIGN KEY (RecipientId) REFERENCES Users(Id) ON UPDATE CASCADE ON DELETE RESTRICT
+    )";
+
+if (mysqli_query($conn, $sql)) {
+    echo "Table PosterReviews created successfully.</br>";
+} else {
+    echo "Error creating table: " . mysqli_error($conn);
+}
+
 mysqli_close($conn);
 
 ?>

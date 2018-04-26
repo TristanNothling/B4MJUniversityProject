@@ -75,7 +75,7 @@ date_default_timezone_set('Europe/London'); #To correct an error where registere
 
 
 
-						<button class="button" onclick="window.location.href='dashboard-postjob.php'">Post your job</button>
+						<button class="button" onclick="window.location.href='login.php'">Post your job</button>
 
 					</div>
 				</div>
