@@ -82,8 +82,7 @@ if ($conn->query($sql) === TRUE) {
     echo "Error updating record: " . $conn->error;
 }
 
-$cur_datetime = date('Y-m-d H:i:s');
-$sql = "UPDATE Transactions SET EscrowFinish=" . $cur_datetime . " WHERE Id=" . $transaction_id;
+$sql = "UPDATE Transactions SET EscrowFinish=" . date('Y-m-d H:i:s') . " WHERE Id=" . $transaction_id;
 
 if ($conn->query($sql) === TRUE) {
     echo "Transaction is complete.";
